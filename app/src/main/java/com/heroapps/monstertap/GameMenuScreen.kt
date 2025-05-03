@@ -48,46 +48,56 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun GameMenuScreen(onStartGame: (Difficulty) -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(32.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
+    Box(modifier = Modifier.fillMaxSize()) {
+        Column(
             modifier = Modifier
-                .size(128.dp)
-                .clip(RoundedCornerShape(32.dp)),
-            painter = painterResource(R.drawable.img_monster_big),
-            contentDescription = null
-        )
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        // Difficulty Slider
-        var difficulty by rememberSaveable { mutableStateOf(Difficulty.Medium) }
-        var selectedIndex by rememberSaveable { mutableIntStateOf(1) } // Default to Medium
-
-        DifficultySlider(
-            initialValue = selectedIndex.toFloat(),
-            onValueChange = { selectedIndex = it.toInt() }
-        )
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        // Start Button
-        Button(
-            onClick = {
-                difficulty = Difficulty.entries[selectedIndex]
-                onStartGame(difficulty)
-            },
-            modifier = Modifier
-                .width(200.dp)
-                .height(50.dp)
+                .fillMaxSize()
+                .padding(32.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(stringResource(R.string.start_game), style = MaterialTheme.typography.labelLarge)
+            Image(
+                modifier = Modifier
+                    .size(128.dp)
+                    .clip(RoundedCornerShape(32.dp)),
+                painter = painterResource(R.drawable.img_monster_big),
+                contentDescription = null
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // Difficulty Slider
+            var difficulty by rememberSaveable { mutableStateOf(Difficulty.Medium) }
+            var selectedIndex by rememberSaveable { mutableIntStateOf(1) } // Default to Medium
+
+            DifficultySlider(
+                initialValue = selectedIndex.toFloat(),
+                onValueChange = { selectedIndex = it.toInt() }
+            )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            // Start Button
+            Button(
+                onClick = {
+                    difficulty = Difficulty.entries[selectedIndex]
+                    onStartGame(difficulty)
+                },
+                modifier = Modifier
+                    .width(200.dp)
+                    .height(50.dp)
+            ) {
+                Text(
+                    stringResource(R.string.start_game),
+                    style = MaterialTheme.typography.labelLarge
+                )
+            }
         }
+
+        AdMobBanner(
+            adUnitId = BANNER_UNIT_ID,
+            modifier = Modifier.align(Alignment.BottomCenter)
+        )
     }
 }
 

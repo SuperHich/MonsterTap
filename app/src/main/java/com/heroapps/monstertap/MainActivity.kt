@@ -45,12 +45,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.android.gms.ads.MobileAds
 import com.heroapps.monstertap.ui.theme.MonsterTapTheme
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Initialize the Google Mobile Ads SDK.
+        MobileAds.initialize(this) {}
+
         setContent {
             MonsterTapTheme {
                 Surface(
@@ -145,6 +150,10 @@ fun MonsterTapGame(difficulty: Difficulty) {
         ) {
             Text(stringResource(R.string.new_game))
         }
+
+        AdMobBanner(
+            adUnitId = BANNER_UNIT_ID
+        )
     }
 
     if (showGameOverDialog) {
