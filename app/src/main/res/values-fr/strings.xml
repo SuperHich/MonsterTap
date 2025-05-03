@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="start_game">Démarrer le jeu</string>
+    <string name="difficulty">Difficulté</string>
+    <string name="difficulty_easy">Facile</string>
+    <string name="difficulty_medium">Moyen</string>
+    <string name="difficulty_hard">Difficile</string>
+    <string name="new_game">Nouvelle Partie</string>
+    <string name="congrats">🎊 Félicitations! 🎊</string>
+    <string name="failed">❌ Partie terminée! ❌</string>
+    <string name="score">Score</string>
+    <string name="monsters">Monstres</string>
+    <string name="attempts">Essais</string>
+    <string name="win_message">Vous avez trouvé tous les monstres en %1$d essais sur %2$d disponibles!\n Score final: %3$d points</string>
+    <string name="loose_message">Vous avez épuisé vos %1$d tentatives!\n Monstres trouvés: %2$d/%3$d\n Score final: %4$d points</string>
+</resources>

@@ -40,6 +40,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -55,7 +56,9 @@ fun GameMenuScreen(onStartGame: (Difficulty) -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            modifier = Modifier.size(128.dp).clip(RoundedCornerShape(8.dp)),
+            modifier = Modifier
+                .size(128.dp)
+                .clip(RoundedCornerShape(32.dp)),
             painter = painterResource(R.drawable.img_monster_big),
             contentDescription = null
         )
@@ -83,7 +86,7 @@ fun GameMenuScreen(onStartGame: (Difficulty) -> Unit) {
                 .width(200.dp)
                 .height(50.dp)
         ) {
-            Text("Start Game", style = MaterialTheme.typography.labelLarge)
+            Text(stringResource(R.string.start_game), style = MaterialTheme.typography.labelLarge)
         }
     }
 }
@@ -104,11 +107,11 @@ fun DifficultySlider(
     var sliderPosition by remember { mutableFloatStateOf(initialValue) }
 
     // Calculate difficulty text based on slider position
-    val difficultyText by derivedStateOf {
+    val difficultyTextId by derivedStateOf {
         when {
-            sliderPosition < 0.75f -> Difficulty.Easy.name
-            sliderPosition < 1.67f -> Difficulty.Medium.name
-            else -> Difficulty.Hard.name
+            sliderPosition < 0.75f -> R.string.difficulty_easy
+            sliderPosition < 1.67f -> R.string.difficulty_medium
+            else -> R.string.difficulty_hard
         }
     }
 
@@ -135,13 +138,13 @@ fun DifficultySlider(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Difficulty",
+                text = stringResource(R.string.difficulty),
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
 
             Text(
-                text = difficultyText,
+                text = stringResource(difficultyTextId),
                 fontSize = 20.sp,
                 color = gradientColor
             )

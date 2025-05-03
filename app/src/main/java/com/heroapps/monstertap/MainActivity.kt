@@ -41,6 +41,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -142,7 +143,7 @@ fun MonsterTapGame(difficulty: Difficulty) {
             onClick = { gameState = defaultGameState },
             modifier = Modifier.padding(8.dp)
         ) {
-            Text("Nouvelle Partie")
+            Text(stringResource(R.string.new_game))
         }
     }
 
@@ -151,21 +152,30 @@ fun MonsterTapGame(difficulty: Difficulty) {
             onDismissRequest = { showGameOverDialog = false },
             title = {
                 Text(
-                    if (gameState.gameResult == GameResult.WIN) "\uD83C\uDF8A Félicitations! \uD83C\uDF8A"
-                    else "❌ Partie terminée! ❌"
+                    stringResource(
+                        if (gameState.gameResult == GameResult.WIN) R.string.congrats else R.string.failed
+                    )
                 )
             },
             text = {
                 if (gameState.gameResult == GameResult.WIN) {
                     Text(
-                        "Vous avez trouvé tous les monstres en ${gameState.attempts} essais sur ${gameState.maxAttempts} disponibles!\n" +
-                                "Score final: ${gameState.score} points"
+                        stringResource(
+                            R.string.win_message,
+                            gameState.attempts,
+                            gameState.maxAttempts,
+                            gameState.score
+                        )
                     )
                 } else {
                     Text(
-                        "Vous avez épuisé vos ${gameState.maxAttempts} tentatives!\n" +
-                                "Monstres trouvés: ${gameState.monsterCount - gameState.monstersRemaining}/${gameState.monsterCount}\n" +
-                                "Score final: ${gameState.score} points"
+                        stringResource(
+                            R.string.loose_message,
+                            gameState.maxAttempts,
+                            gameState.monsterCount - gameState.monstersRemaining,
+                            gameState.monsterCount,
+                            gameState.score
+                        )
                     )
                 }
             },
@@ -176,7 +186,7 @@ fun MonsterTapGame(difficulty: Difficulty) {
                         showGameOverDialog = false
                     }
                 ) {
-                    Text("Nouvelle Partie")
+                    Text(stringResource(R.string.new_game))
                 }
             }
         )
@@ -208,9 +218,9 @@ fun GameHeader(score: Int, monstersRemaining: Int, attempts: Int, maxAttempts: I
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            ScoreItem(title = "Score", value = score.toString())
-            ScoreItem(title = "Monstres", value = "$monstersRemaining")
-            ScoreItem(title = "Essais", value = "$attempts/$maxAttempts")
+            ScoreItem(title = stringResource(R.string.score), value = score.toString())
+            ScoreItem(title = stringResource(R.string.monsters), value = "$monstersRemaining")
+            ScoreItem(title = stringResource(R.string.attempts), value = "$attempts/$maxAttempts")
         }
     }
 }
