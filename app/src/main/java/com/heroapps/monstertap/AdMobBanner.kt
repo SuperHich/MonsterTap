@@ -18,11 +18,11 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 
-const val BANNER_UNIT_ID = "ca-app-pub-4989116616189159/7869648470"
+const val BANNER_UNIT_ID = "ca-app-pub-4989116616189159/1098310274"
 
 /**
  * A composable function that displays an AdMob banner ad at the bottom of the screen.
- * 
+ *
  * @param adUnitId The AdMob ad unit ID for the banner.
  * @param modifier Modifier for customizing the banner's layout.
  */
@@ -33,12 +33,12 @@ fun AdMobBanner(
 ) {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
-    
+
     // Create AdView
     val adView = remember {
         createAdView(context, adUnitId)
     }
-    
+
     // Handle lifecycle events
     DisposableEffect(lifecycleOwner) {
         val observer = LifecycleEventObserver { _, event ->
@@ -49,15 +49,15 @@ fun AdMobBanner(
                 else -> {}
             }
         }
-        
+
         lifecycleOwner.lifecycle.addObserver(observer)
-        
+
         onDispose {
             lifecycleOwner.lifecycle.removeObserver(observer)
             adView.destroy()
         }
     }
-    
+
     // Display the AdView in the Compose UI
     AndroidView(
         factory = { adView },

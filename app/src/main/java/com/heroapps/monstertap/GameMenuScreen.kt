@@ -156,6 +156,7 @@ fun DifficultySlider(
             Text(
                 text = stringResource(difficultyTextId),
                 fontSize = 20.sp,
+                style = MaterialTheme.typography.titleMedium,
                 color = gradientColor
             )
         }
@@ -190,7 +191,7 @@ fun DifficultySlider(
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .offset(y = (-36).dp),
+                .offset(y = (-34).dp),
             colors = SliderDefaults.colors(
                 thumbColor = gradientColor,
                 activeTrackColor = Color.Transparent,
@@ -200,7 +201,7 @@ fun DifficultySlider(
                 // Custom large thumb
                 Box(
                     modifier = Modifier
-                        .size(28.dp)
+                        .size(24.dp)
                         .clip(RoundedCornerShape(14.dp))
                         .background(gradientColor)
                         .padding(2.dp)

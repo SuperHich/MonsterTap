@@ -11,6 +11,7 @@
     <string name="score">Score</string>
     <string name="monsters">Monstres</string>
     <string name="attempts">Essais</string>
+    <string name="exit">Quitter</string>
     <string name="win_message">Vous avez trouvé tous les monstres en %1$d essais sur %2$d disponibles!\nScore final: %3$d points</string>
     <string name="loose_message">Vous avez épuisé vos %1$d tentatives!\n Monstres trouvés: %2$d/%3$d\nScore final: %4$d points</string>
 </resources>

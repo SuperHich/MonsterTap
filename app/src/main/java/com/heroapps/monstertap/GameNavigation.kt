@@ -30,7 +30,9 @@ fun GameNavigation() {
             arguments = listOf(navArgument("difficulty") { type = NavType.StringType })
         ) { backStackEntry ->
             val difficulty = backStackEntry.arguments?.getString("difficulty") ?: Difficulty.Medium.name
-            MonsterTapGame(difficulty = Difficulty.valueOf(difficulty))
+            MonsterTapGame(difficulty = Difficulty.valueOf(difficulty)) {
+                navController.popBackStack()
+            }
         }
     }
 }
