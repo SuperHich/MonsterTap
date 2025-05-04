@@ -20,44 +20,6 @@ import kotlinx.coroutines.delay
 
 const val FULL_PAGE_UNIT_ID = "ca-app-pub-4989116616189159/5210921467"
 
-@Composable
-fun LaunchInterstitialAds(context: Context) {
-    val interstitialAdManager = rememberInterstitialAdManager(
-        adUnitId = FULL_PAGE_UNIT_ID,
-        preload = true,
-        onAdDismissed = {
-            // Ad was dismissed, continue with the game
-            println("Interstitial ad was dismissed")
-            //adShownThisSession = true
-        },
-        onAdFailedToLoad = { loadError: LoadAdError ->
-            // Ad failed to load, handle the error
-            println("Failed to load interstitial ad: ${loadError.message}")
-        },
-        onAdLoaded = {
-            // Ad loaded successfully
-            println("Interstitial ad loaded successfully")
-        },
-        onAdFailedToShow = { showError: AdError ->
-            // Ad failed to show, handle the error
-            println("Failed to show interstitial ad: ${showError.message}")
-        }
-    )
-
-    LaunchedEffect(Unit) {
-        delay(1000)
-        val activity = context as? Activity
-        activity?.let {
-            if (interstitialAdManager.isAdLoaded()) {
-                interstitialAdManager.showAd(it)
-            } else {
-                // Ad not loaded, try to load it
-                interstitialAdManager.loadAd(FULL_PAGE_UNIT_ID)
-            }
-        }
-    }
-}
-
 /**
  * A manager class for loading and showing interstitial ads.
  */
@@ -217,4 +179,42 @@ fun rememberInterstitialAdManager(
     }
     
     return adManager
+}
+
+@Composable
+fun LaunchInterstitialAds(context: Context) {
+    val interstitialAdManager = rememberInterstitialAdManager(
+        adUnitId = FULL_PAGE_UNIT_ID,
+        preload = true,
+        onAdDismissed = {
+            // Ad was dismissed, continue with the game
+            println("Interstitial ad was dismissed")
+            //adShownThisSession = true
+        },
+        onAdFailedToLoad = { loadError: LoadAdError ->
+            // Ad failed to load, handle the error
+            println("Failed to load interstitial ad: ${loadError.message}")
+        },
+        onAdLoaded = {
+            // Ad loaded successfully
+            println("Interstitial ad loaded successfully")
+        },
+        onAdFailedToShow = { showError: AdError ->
+            // Ad failed to show, handle the error
+            println("Failed to show interstitial ad: ${showError.message}")
+        }
+    )
+
+    LaunchedEffect(Unit) {
+        delay(1000)
+        val activity = context as? Activity
+        activity?.let {
+            if (interstitialAdManager.isAdLoaded()) {
+                interstitialAdManager.showAd(it)
+            } else {
+                // Ad not loaded, try to load it
+                interstitialAdManager.loadAd(FULL_PAGE_UNIT_ID)
+            }
+        }
+    }
 }
