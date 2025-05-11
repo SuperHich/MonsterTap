@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="start_game">Démarrer le jeu</string>
-    <string name="difficulty">Difficulté</string>
-    <string name="difficulty_easy">Facile</string>
-    <string name="difficulty_medium">Moyen</string>
-    <string name="difficulty_hard">Difficile</string>
     <string name="new_game">Nouvelle Partie</string>
     <string name="congrats">🎊 Félicitations! 🎊</string>
     <string name="failed">❌ Partie terminée! ❌</string>

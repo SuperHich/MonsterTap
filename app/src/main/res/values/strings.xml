@@ -2,10 +2,6 @@
     <string name="app_name" translatable="false">Monster Tap</string>
 
     <string name="start_game">Start Game</string>
-    <string name="difficulty">Difficulty</string>
-    <string name="difficulty_easy">Easy</string>
-    <string name="difficulty_medium">Medium</string>
-    <string name="difficulty_hard">Hard</string>
     <string name="new_game">New game</string>
     <string name="congrats">🎊 Congratulations! 🎊</string>
     <string name="failed">❌ Partie terminée! ❌</string>

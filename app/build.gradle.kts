@@ -40,20 +40,11 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.ui.viewbinding)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.icons.extended)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.navigation)
     implementation(libs.google.play.services.ads)
+    implementation(libs.heroapps.library)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
