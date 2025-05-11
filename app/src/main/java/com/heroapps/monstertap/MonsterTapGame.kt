@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
@@ -42,12 +41,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.heroapps.library.admob.AdMobBanner
+import com.heroapps.library.admob.LaunchInterstitialAds
+import com.heroapps.library.compose.AudioFeedback
+import com.heroapps.library.compose.Difficulty
+import com.heroapps.monstertap.AudioFeedbackExtension.loadSounds
+import com.heroapps.monstertap.AudioFeedbackExtension.playCatch
+import com.heroapps.monstertap.AudioFeedbackExtension.playClick
+import com.heroapps.monstertap.AudioFeedbackExtension.playFailed
+import com.heroapps.monstertap.AudioFeedbackExtension.playSuccess
 import kotlin.random.Random
 
 @Composable
 fun MonsterTapGame(difficulty: Difficulty, onExit: () -> Unit) {
     val context = LocalContext.current
-    LaunchInterstitialAds(context)
+    LaunchInterstitialAds(context, Constants.FULL_PAGE_UNIT_ID)
 
     val defaultGameState = when (difficulty) {
         Difficulty.Easy -> GameState(gridSize = 3, maxAttempts = 6, monsterCount = 4)
@@ -67,8 +75,7 @@ fun MonsterTapGame(difficulty: Difficulty, onExit: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .statusBarsPadding()
-            .padding(horizontal = 8.dp, vertical = 16.dp),
+            .padding(start = 8.dp, end = 8.dp, top = 48.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         GameHeader(
@@ -136,7 +143,7 @@ fun MonsterTapGame(difficulty: Difficulty, onExit: () -> Unit) {
         }
 
         AdMobBanner(
-            adUnitId = BANNER_UNIT_ID
+            adUnitId = Constants.BANNER_UNIT_ID
         )
     }
 
