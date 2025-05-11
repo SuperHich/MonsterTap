@@ -1,7 +1,15 @@
+import java.text.SimpleDateFormat
+import java.util.Date
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+}
+
+fun dateAsString(): String {
+    val formatter = SimpleDateFormat("yyyyMMddHH")
+    return formatter.format(Date())
 }
 
 android {
@@ -12,8 +20,8 @@ android {
         applicationId = "com.heroapps.monstertap"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = dateAsString().toInt()
+        versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
